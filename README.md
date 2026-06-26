@@ -19,7 +19,7 @@ This project should not be considered an exact reproduction of the original stud
 
 1. Clone the repository:
 
-    git clone https://github.com/roman-terentiev/noise_area_mom
+    git clone https://github.com/roman-terentiev/learn_to_rank_mom
 
 2. Get required dependencies in:
 
