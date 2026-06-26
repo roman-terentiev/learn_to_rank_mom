@@ -70,9 +70,9 @@ def get_equity(df_batches, round_trip_cost_bps, save_dir):
     df_batches["net_ret"] = df_batches["w"] * df_batches["nmr"] - df_batches["cost_ret"]
 
     has_w = df_batches["w"].groupby(level="date").any().cumsum().astype(bool)
-    rets = df_batches["net_ret"].groupby(level="date").sum().loc[has_w]
-    rets = rets.shift().dropna()
-    equity = (rets + 1).cumprod().rename("equity")
+    net_rets = df_batches["net_ret"].groupby(level="date").sum().loc[has_w]
+    net_rets = net_rets.shift().dropna()
+    equity = (net_rets + 1).cumprod().rename("equity")
 
     fig, ax = plt.subplots(figsize=(12, 6))
     equity.plot(ax=ax)
