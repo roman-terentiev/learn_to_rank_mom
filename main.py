@@ -63,5 +63,5 @@ if __name__ == "__main__":
     get_stats(equity, num_periods=STATS_NUM_PERIODS, save_dir=out_dir)
     get_rets_heat(equity, save_dir=out_dir)
 
-    elapsed = time.perf_counter() - start_time
-    print(f"Time elapsed: {elapsed:.2f} seconds")
+    elapsed = (time.perf_counter() - start_time) / 60
+    print(f"Time elapsed: {elapsed:.2f} minutes")
