@@ -1,6 +1,7 @@
 import pandas as pd
-
 from datetime import datetime, timezone
+import time
+
 from pathlib import Path
 import shutil
 import subprocess
@@ -14,11 +15,13 @@ from config import *
 
 
 if __name__ == "__main__":
-    utc_time = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    start_time = time.perf_counter()
+    run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    print(f"Run ID: {run_id}")
 
     runs_dir = Path("runs")
     runs_dir.mkdir(parents=True, exist_ok=True)
-    run_dir = runs_dir / utc_time
+    run_dir = runs_dir / run_id
     run_dir.mkdir(parents=True, exist_ok=True)
 
     in_dir = run_dir / "in"
@@ -59,3 +62,6 @@ if __name__ == "__main__":
 
     get_stats(equity, num_periods=STATS_NUM_PERIODS, save_dir=out_dir)
     get_rets_heat(equity, save_dir=out_dir)
+
+    elapsed = time.perf_counter() - start_time
+    print(f"Time elapsed: {elapsed:.2f} seconds")
